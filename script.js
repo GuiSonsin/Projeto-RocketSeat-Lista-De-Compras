@@ -1,9 +1,13 @@
 const inputItem = document.querySelector(".js-inputPurchase")
+const quantityItem = document.querySelector(".input-quantity")
 const listOfItems = document.querySelector(".js-containerPurchase")
 const buttonAddItem = document.querySelector(".js-buttonAddItem")
 
+
 function addItemInList(){
     const nameItem = inputItem.value.trim()
+    const quantityItemValue = quantityItem.value.trim()
+    
     // checking if the item name is null
     if(nameItem === ""){
         return alert("Insira o nome do item!")
@@ -16,6 +20,7 @@ function addItemInList(){
 
     itemList.innerHTML = `
     <input type="checkbox" class="select-item">
+    <span>${quantityItemValue}</span>
     <p>${nameItem}</p>
     <img src="images/Lixeira.png" alt="Excluir" class="delete-btn">`
 
@@ -24,6 +29,7 @@ function addItemInList(){
 
     // clear input field value
     inputItem.value = ""
+    quantityItemValue.value = ""
 
     // creating delete button to remove item of list
     const deleteButton = itemList.querySelector(".delete-btn")
@@ -37,10 +43,8 @@ buttonAddItem.addEventListener("click", addItemInList)
 
 // adding event in the input to show item in list
 inputItem.addEventListener("keypress", (k) => {
-    if(k.key === "Enter"){
-        k.preventDefault()
+    if(k.key === "Enter")
         addItemInList()
-    }  
 })
 
 function deleteItem(item){
