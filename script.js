@@ -37,8 +37,10 @@ buttonAddItem.addEventListener("click", addItemInList)
 
 // adding event in the input to show item in list
 inputItem.addEventListener("keypress", (k) => {
-    if(k.key === "Enter")
+    if(k.key === "Enter"){
+        k.preventDefault()
         addItemInList()
+    }  
 })
 
 function deleteItem(item){
