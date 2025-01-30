@@ -1,10 +1,9 @@
 const inputItem = document.querySelector(".js-inputPurchase")
-const listItem = document.querySelector(".js-containerPurchase")
+const listOfItems = document.querySelector(".js-containerPurchase")
 const buttonAddItem = document.querySelector(".js-buttonAddItem")
 
 function addItemInList(){
-    let nameItem = inputItem.value.trim()
-
+    const nameItem = inputItem.value.trim()
     // checking if the item name is null
     if(nameItem === ""){
         return alert("Insira o nome do item!")
@@ -21,7 +20,9 @@ function addItemInList(){
     <img src="images/Lixeira.png" alt="Excluir" class="delete-btn">`
 
     // adding item to list
-    listItem.appendChild(itemList)
+    listOfItems.appendChild(itemList)
+
+    // clear input field value
     inputItem.value = ""
 
     // creating delete button to remove item of list
@@ -43,4 +44,38 @@ inputItem.addEventListener("keypress", (k) => {
 function deleteItem(item){
     // removing item of list
     item.remove()
+    
+    // getting item name 
+    const itemName = item.querySelector("p").innerText
+
+    // calling function to show message with item name
+    showMessageDeleteItem(itemName)
+}
+
+function showMessageDeleteItem(itemName){
+    // creating tag aside
+    let notification = document.createElement("aside");
+
+    // adding class in the tag
+    notification.classList.add("notification")
+
+    // creating tag p
+    let message = document.createElement("p")
+
+    // adding text in the tag p
+    message.innerHTML = `O item '${itemName}' foi removido da lista!`
+    
+    // putting message in the notification
+    notification.appendChild(message);
+
+    // adding notification element to HTML page body
+    document.body.appendChild(notification);
+
+    // show message
+    notification.style.display = "block"
+
+    // hide notification in 4 seconds
+    setTimeout(() => {
+        notification.style.display = "none"
+    }, 4000)
 }
