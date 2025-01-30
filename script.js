@@ -27,9 +27,12 @@ function addItemInList(){
     // adding item to list
     listOfItems.appendChild(itemList)
 
-    // clear input field value
+    // clear fields 
     inputItem.value = ""
-    quantityItemValue.value = ""
+    quantityItem.value = ""
+
+    // directing focus
+    quantityItem.focus()
 
     // creating delete button to remove item of list
     const deleteButton = itemList.querySelector(".delete-btn")
